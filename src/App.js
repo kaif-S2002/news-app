@@ -11,7 +11,10 @@ export default function Home() {
         <Nav />
 
         <Routes>
-          <Route path="/" element={<News key="general" categories="top" />} />
+          <Route
+            path="/news-app"
+            element={<News key="general" categories="top" />}
+          />
           <Route
             path="/technology"
             element={<News key="technology" categories="technology" />}
