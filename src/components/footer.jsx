@@ -7,7 +7,7 @@ const footer = () => {
     <div className="footer flex-box bg-slate-200">
       <div className="footer-logo flex justify-center pt-4 pb-2">
         <h2 className="bg font-bold text-3xl">
-          <Link to={"/"}>
+          <Link to={"/news-app"}>
             New<span className="color-red text-red-900">zee</span>
           </Link>
         </h2>

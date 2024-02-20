@@ -9,7 +9,7 @@ const Nav = () => {
     <div className="nav flex justify-between items-center px-5 py-2 bg-slate-200 w-100% overflow-hidden ">
       <div className="nav-logo z-10">
         <h2 className="text-4xl font-bold font-mono  max-lg:text-3xl ">
-          <Link to={"/"}>
+          <Link to={"/news-app"}>
             New<span className="color-red text-red-900">zee</span>
           </Link>
         </h2>
@@ -23,7 +23,7 @@ const Nav = () => {
       >
         <ul className="flex flex-wrap gap-8 justify-center items-center w-full text-sm font-semibold lg:flex-nowrap">
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/news-app"}>Home</Link>
           </li>
           <li>
             <Link to={"/technology"}>Technology</Link>
