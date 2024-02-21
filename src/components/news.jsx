@@ -4,7 +4,8 @@ import axios from "axios";
 
 const News = (props) => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-  let url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=in&size=10&language=en&category=${props.categories}`;
+  // let url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=in&size=10&language=en&category=${props.categories}`;
+  let url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.categories}&apikey=${apiKey}`;
   const altImg =
     "https://marketplace.canva.com/EAE_sZAo4mg/1/0/1600w/canva-dark-blue-red-white-generic-news-general-news-logo-UGXjaAXDCaM.jpg";
   const [news, setNews] = useState([]);
@@ -14,7 +15,9 @@ const News = (props) => {
     try {
       const res = await axios.get(url);
       const data = res.data;
-      setNews(data.results);
+      // setNews(data.results);
+      setNews(data.articles);
+      console.log(data);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -52,7 +55,8 @@ const News = (props) => {
                 <div className="card bg-white w-80 md:max-[1090px]:w-60 max-[360px]:w-64">
                   <div className="img-div">
                     <img
-                      src={ele.image_url === null ? altImg : ele.image_url}
+                      // src={ele.image_url === null ? altImg : ele.image_url}
+                      src={ele.urlToImage === null ? altImg : ele.urlToImage}
                       className="card-img-top"
                       alt="News Image"
                     />
@@ -72,14 +76,16 @@ const News = (props) => {
                     </div>
                     <div className="btn-div flex justify-between items-center">
                       <a
-                        href={ele.link}
+                        // href={ele.link}
+                        href={ele.url}
                         target="_blank"
                         className="news-btn text-base"
                       >
                         Read more
                       </a>
-                      <span className="date flex text-[10px]">
-                        Published At: {ele.pubDate}
+                      <span className="date flex text-[10px] md:max-[1090px]:text-[8px] ">
+                        {/* Published At: {ele.pubDate} */}
+                        Published At: {ele.publishedAt}
                       </span>
                     </div>
                   </div>
