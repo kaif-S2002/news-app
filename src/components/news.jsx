@@ -32,7 +32,9 @@ const News = (props) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  document.title = `${capitalizeFirstLetter(props.categories)} - Newzee`;
+  document.title = `${capitalizeFirstLetter(
+    props.categories === "top" ? "General" : props.categories
+  )} - Newzee`;
 
   return (
     <>
