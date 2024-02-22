@@ -13,8 +13,7 @@ export default function Home() {
         <Routes>
           <Route
             path="/news-app"
-            // element={<News key="general" categories="top" />}
-            element={<News key="general" categories="general" />}
+            element={<News key="general" categories="top" />}
           />
           <Route
             path="/technology"
