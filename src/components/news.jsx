@@ -26,6 +26,11 @@ const News = (props) => {
     fetchInfo();
   }, []);
 
+  const handleError = (e) => {
+    e.stopPropagation();
+    e.target.src = "altImg";
+  };
+
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -56,6 +61,7 @@ const News = (props) => {
                   <div className="img-div">
                     <img
                       src={ele.image_url === null ? altImg : ele.image_url}
+                      onError={handleError}
                       className="card-img-top"
                       alt="News Image"
                     />
