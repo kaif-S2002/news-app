@@ -15,7 +15,6 @@ const News = (props) => {
       const res = await axios.get(url);
       const data = res.data;
       setNews(data.results);
-      console.log(data);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -25,11 +24,6 @@ const News = (props) => {
   useEffect(() => {
     fetchInfo();
   }, []);
-
-  const handleError = (e) => {
-    e.stopPropagation();
-    e.target.src = "altImg";
-  };
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -61,7 +55,9 @@ const News = (props) => {
                   <div className="img-div">
                     <img
                       src={ele.image_url === null ? altImg : ele.image_url}
-                      onError={handleError}
+                      onError={(e) => {
+                        e.target.src = altImg;
+                      }}
                       className="card-img-top"
                       alt="News Image"
                     />
@@ -69,14 +65,17 @@ const News = (props) => {
                   <div className="card-body p-4">
                     <div className="news-text overflow-hidden">
                       <h5 className="card-title text-sm font-bold pb-2">
-                        {ele.title.length > 100
-                          ? `${ele.title.slice(0, 100)}...`
+                        {ele.title.length >= 60
+                          ? `${ele.title.slice(0, 60)}...`
                           : ele.title}
                       </h5>
-                      <p className="card-text text-xs font-base pb-6">
+                      <p className="card-text text-xs font-base ">
                         {ele.description === null || ele.description === ""
                           ? "Read full content on the news sourced website by click on the 'read more'."
-                          : `${ele.description.slice(0, 135)}...`}
+                          : `${ele.description.slice(0, 120)}...`}
+                      </p>
+                      <p className="flex justify-end items-center font-bold text-[10px] pt-2 pb-1 tracking-wider">
+                        - {ele.creator === null ? "Newzee" : ele.creator}
                       </p>
                     </div>
                     <div className="btn-div flex justify-between items-center">
@@ -87,7 +86,7 @@ const News = (props) => {
                       >
                         Read more
                       </a>
-                      <span className="date flex text-[10px] md:max-[1090px]:text-[8px] ">
+                      <span className="date flex text-[10px] max-[1090px]:text-[8px] ">
                         Published At: {ele.pubDate}
                       </span>
                     </div>
